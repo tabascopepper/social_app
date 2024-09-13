@@ -1,15 +1,14 @@
 <h1>Feed:</h1>
 
-<div style="margin-top: 50px;"></div>
+<div style="margin-top: 50px;">
 
-<ul>
-  <% posts_collection.each do |post| %>
-    <li>
-      <%= link_to post.title, post %>
-    </li>
-  <% end %>
-</ul>
+  <ul>
+    <% posts_collection.each do |post| %>
+      <li>
+        <%= link_to post.title, post %>
+      </li>
+    <% end %>
+  </ul>
+</div>
 
-<div style="margin-top: 50px;"></div>
-
-<%= link_to 'Add New Post', new_post_path, class: 'btn btn-primary' %>
+<div style="margin-top: 50px;"><%= button_to 'Add New Post', new_post_path, method: :get, class: 'btn btn-primary' %></div>

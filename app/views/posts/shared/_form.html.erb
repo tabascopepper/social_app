@@ -4,20 +4,16 @@
     <%= form.text_field :title %>
   </div>
 
-  <div style="margin-top: 50px;"></div>
-
-  <div class="field">
+  <div style="margin-top: 50px;" class="field">
     <%= form.label :text %>
     <%= form.text_area :body %>
   </div>
 
-  <div style="margin-top: 50px;"></div>
-
-  <div class="actions">
+  <div style="margin-top: 50px;" class="actions">
     <%= form.submit 'Save Post', class: 'btn btn-primary' %>
   </div>
 <% end %>
 
 <div style="margin-top: 50px;"></div>
 
-<%= link_to 'Back To All Posts', posts_path, class: 'btn btn-secondary' %>
+<%= button_to 'Back To All Posts', posts_path, method: :get, class: 'btn btn-secondary' %>

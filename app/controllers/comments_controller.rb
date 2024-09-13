@@ -24,8 +24,6 @@ class CommentsController < ApplicationController
   def create
     comment = Comment.new(comment_params)
     comment.author = current_user
-    comment.post = resource_post
-    comment.parent_id = comment_params[:parent_id]
 
     if comment.save
       flash[:success] = I18n.t('comment.create')

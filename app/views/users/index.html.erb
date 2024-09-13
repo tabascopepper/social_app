@@ -1,0 +1,17 @@
+<h1>Authors:</h1>
+
+<div style="margin-top: 50px;">
+
+  <ul>
+    <% users_collection.each do |user| %>
+      <li style="margin-top: 20px;">
+        <%= user.full_name %>
+        <% if current_user.following?(user) %>
+          <%= button_to 'Unfollow', unfollow_user_path(user), method: :delete, class: 'btn btn-primary' %>
+      <% else %>
+          <%= button_to 'Follow', follow_user_path(user), method: :post, class: 'btn btn-primary' %>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+</div>
