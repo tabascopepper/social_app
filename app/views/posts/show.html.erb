@@ -18,6 +18,6 @@
 
 <ul>
   <% post.comments.where(parent_id: nil).each do |comment| %>
-    <%= render partial: "comments/shared/comment", locals: { comment: comment } %>
+    <%= render partial: "comments/shared/comment", locals: { post: post, comment: comment } %>
   <% end %>
 </ul>

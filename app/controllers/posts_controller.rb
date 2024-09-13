@@ -61,7 +61,7 @@ class PostsController < ApplicationController
   end
 
   def resource_post
-    @resource_post = Post.find(params[:id])
+    @resource_post = Post.find_by(id: params[:id])
   end
 
   def posts_collection

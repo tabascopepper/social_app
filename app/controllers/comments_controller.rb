@@ -50,17 +50,17 @@ class CommentsController < ApplicationController
     resource_comment.destroy
 
     flash[:success] = I18n.t('comment.destroy')
-    redirect_to resource_comment.post
+    redirect_to resource_post
   end
 
   private
 
   def resource_comment
-    @resource_comment = Comment.find(params[:id])
+    @resource_comment = Comment.find_by(id: params[:id])
   end
 
   def resource_post
-    @resource_post = Post.find(params[:post_id])
+    @resource_post = Post.find_by(id: params[:post_id])
   end
 
   def comment_params
