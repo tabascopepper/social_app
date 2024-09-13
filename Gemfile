@@ -1,28 +1,32 @@
-source "https://rubygems.org"
+# frozen_string_literal: true
 
-gem "rails", "~> 7.2.1"
-gem "sprockets-rails"
-gem "pg", "~> 1.1"
-gem "puma", ">= 5.0"
-gem "jbuilder"
-gem "tzinfo-data", platforms: %i[ mswin mswin64 mingw x64_mingw jruby ]
-gem "bootsnap", require: false
+source 'https://rubygems.org'
 
+gem 'bootsnap', require: false
+gem 'devise', '~> 4.9'
+gem 'jbuilder'
+gem 'pg', '~> 1.1'
+gem 'puma', '>= 5.0'
+gem 'rails', '~> 7.2.1'
+gem 'sprockets-rails'
+gem 'turbo-rails'
+gem 'tzinfo-data', platforms: %i[mswin mswin64 mingw x64_mingw jruby]
 
 group :development, :test do
+  gem 'annotate'
+  gem 'erb_lint', require: false
+  gem 'factory_bot_rails'
+  gem 'faker'
   gem 'pry-byebug'
+  gem 'rspec-rails'
   gem 'rubocop'
   gem 'rubocop-rails'
   gem 'rubocop-rspec'
-  gem 'factory_bot_rails'
-  gem 'erb_lint', require: false
-  gem 'annotate'
-  gem 'rspec-rails'
-  gem 'faker'
 end
 
 group :development do
-  gem "web-console"
+  gem 'letter_opener'
+  gem 'web-console'
 end
 
 group :test do
@@ -30,3 +34,5 @@ group :test do
 
   gem 'test-prof', '~> 1.4'
 end
+
+gem 'importmap-rails', '~> 2.0'
