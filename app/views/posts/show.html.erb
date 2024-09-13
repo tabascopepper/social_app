@@ -1,0 +1,18 @@
+<h1><%= resource_post.title %></h1>
+<p><%= resource_post.body %></p>
+
+<% if resource_post.user == current_user %>
+  <%= link_to 'Edit', edit_post_path(resource_post), class: 'btn btn-secondary' %>
+  <%= link_to 'Delete', post_path(resource_post), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this message?" }, class: "btn btn-danger" %>
+<% end %>
+
+<%= link_to 'Back', posts_path, class: 'btn btn-primary' %>
+
+<!--<ul>-->
+  <%# resource_post.comments.each do |comment| %>
+<!--    <li>-->
+<!--      <%#= comment.content %> - <%#= link_to 'Edit', edit_comment_path(comment), class: 'btn btn-secondary' %>-->
+      <%#= link_to 'Delete', comment, method: :delete, class: 'btn btn-danger' %>
+<!--    </li>-->
+  <%# end %>
+<!--</ul>-->

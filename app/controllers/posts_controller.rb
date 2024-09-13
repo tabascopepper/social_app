@@ -1,24 +1,65 @@
-# frozen_string_literal: true
-
 class PostsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @posts = Post.where(user_id: current_user.followings.pluck(:id)).order(created_at: :desc)
+    render locals: { posts_collection: posts_collection }
+  end
+
+  def show
+    render locals: { resource_post: resource_post }
+  end
+
+  def new
+    @post = Post.new(post_params)
+
+    render locals: { post: @post }
+  end
+
+  def edit
+    render locals: { resource_post: resource_post }
   end
 
   def create
-    @post = current_user.posts.build(post_params)
-    if @post.save
-      redirect_to posts_path, notice: I18n.t('posts.success')
+    post = Post.new(post_params)
+    post.user = current_user
+
+    if post.save
+      flash[:success] = I18n.t('posts.create')
+      redirect_to posts_path
     else
+      flash.now[:error] = I18n.t('error')
       render :new
     end
   end
 
+  def update
+    if resource_post.update(post_params)
+      flash[:success] = I18n.t('posts.update')
+      redirect_to resource_post
+    else
+      flash.now[:error] = I18n.t('error')
+      render :edit
+    end
+  end
+
+  def destroy
+    resource_post.destroy!
+
+    flash[:success] = I18n.t('posts.destroy')
+    redirect_to posts_path
+  end
+
   private
 
+  def resource_post
+    @resource_post = Post.find(params[:id])
+  end
+
+  def posts_collection
+    @posts_collection = Post.where(user_id: current_user.id)
+  end
+
   def post_params
-    params.require(:post).permit(:content)
+    (params[:post] || ActionController::Parameters.new).permit(:title, :body)
   end
 end
