@@ -1,26 +1,44 @@
+# frozen_string_literal: true
+
 class CommentsController < ApplicationController
   before_action :authenticate_user!
 
+  def new
+    @comment = Comment.new(post_id: params[:post_id])
+
+    render locals: {
+      post: resource_post,
+      comment: @comment
+    }
+  end
+
   def edit
-    render locals: { resource_comment: resource_comment }
+    render locals: {
+      post: resource_post,
+      comment: resource_comment
+    }
   end
 
   def create
     comment = Comment.new(comment_params)
-    comment.user = current_user
+    comment.author = current_user
     comment.post = resource_post
 
     if comment.save
-      redirect_to post, notice: 'Comment was successfully created.'
+      flash[:success] = I18n.t('comment.create')
+      redirect_to resource_post
     else
-      redirect_to post, alert: 'Failed to create comment.'
+      flash.now[:error] = I18n.t('error')
+      render :new
     end
   end
 
   def update
     if resource_comment.update(comment_params)
-      redirect_to resource_comment.post, notice: 'Comment was successfully updated.'
+      flash[:success] = I18n.t('comment.update')
+      redirect_to resource_comment.post
     else
+      flash.now[:error] = I18n.t('error')
       render :edit
     end
   end
@@ -28,7 +46,8 @@ class CommentsController < ApplicationController
   def destroy
     resource_comment.destroy
 
-    redirect_to @comment.post, notice: 'Comment was successfully destroyed.'
+    flash[:success] = I18n.t('comment.destroy')
+    redirect_to resource_comment.post, notice: 'Comment was successfully destroyed.'
   end
 
   private
@@ -38,7 +57,7 @@ class CommentsController < ApplicationController
   end
 
   def resource_post
-    Post.find(params[:post_id])
+    @resource_post = Post.find(params[:post_id])
   end
 
   def comment_params

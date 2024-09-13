@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PostsController < ApplicationController
   before_action :authenticate_user!
 
@@ -21,7 +23,7 @@ class PostsController < ApplicationController
 
   def create
     post = Post.new(post_params)
-    post.user = current_user
+    post.author = current_user
 
     if post.save
       flash[:success] = I18n.t('posts.create')
@@ -56,7 +58,7 @@ class PostsController < ApplicationController
   end
 
   def posts_collection
-    @posts_collection = Post.where(user_id: current_user.id)
+    @posts_collection = Post.where(author_id: current_user.id)
   end
 
   def post_params

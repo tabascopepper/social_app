@@ -1,14 +1,13 @@
 # frozen_string_literal: true
 
 class Post < ApplicationRecord
-  belongs_to :user
+  belongs_to :author, class_name: 'User'
   has_many :comments, dependent: :destroy
 
   validates :title, presence: true
   validates :body, presence: true
 end
 
-# rubocop:disable Layout/LineLength
 # == Schema Information
 #
 # Table name: posts
@@ -18,10 +17,9 @@ end
 #  title      :string           not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  user_id    :bigint           not null
+#  author_id  :bigint           not null
 #
 # Indexes
 #
-#  index_posts_on_user_id  (user_id)
+#  index_posts_on_author_id  (author_id)
 #
-# rubocop:enable Layout/LineLength

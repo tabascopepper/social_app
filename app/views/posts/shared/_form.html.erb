@@ -1,19 +1,23 @@
-<h1>Post</h1>
-
 <%= form_with(model: post, local: true) do |form| %>
   <div class="field">
     <%= form.label :title %>
     <%= form.text_field :title %>
   </div>
 
+  <div style="margin-top: 50px;"></div>
+
   <div class="field">
-    <%= form.label :body %>
+    <%= form.label :text %>
     <%= form.text_area :body %>
   </div>
 
+  <div style="margin-top: 50px;"></div>
+
   <div class="actions">
-    <%= form.submit 'Save', class: 'btn btn-primary' %>
+    <%= form.submit 'Save Post', class: 'btn btn-primary' %>
   </div>
 <% end %>
 
-<%= link_to 'Back', posts_path, class: 'btn btn-secondary' %>
+<div style="margin-top: 50px;"></div>
+
+<%= link_to 'Back To All Posts', posts_path, class: 'btn btn-secondary' %>

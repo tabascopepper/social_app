@@ -8,6 +8,6 @@ Rails.application.routes.draw do
   root 'posts#index'
 
   resources :posts do
-    resources :comments, only: [:create, :edit, :update, :destroy]
+    resources :comments, only: %i[new edit create update destroy]
   end
 end

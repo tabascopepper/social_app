@@ -1,6 +1,6 @@
-<h1>Feed</h1>
+<h1>Feed:</h1>
 
-<%= link_to 'New Post', new_post_path, class: 'btn btn-primary' %>
+<div style="margin-top: 50px;"></div>
 
 <ul>
   <% posts_collection.each do |post| %>
@@ -9,3 +9,7 @@
     </li>
   <% end %>
 </ul>
+
+<div style="margin-top: 50px;"></div>
+
+<%= link_to 'Add New Post', new_post_path, class: 'btn btn-primary' %>
