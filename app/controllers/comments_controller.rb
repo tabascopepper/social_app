@@ -4,10 +4,11 @@ class CommentsController < ApplicationController
   before_action :authenticate_user!
 
   def new
-    @comment = Comment.new(post_id: params[:post_id])
+    @comment = Comment.new(post_id: resource_post.id)
 
     render locals: {
       post: resource_post,
+      parent_id: comment_params[:parent_id],
       comment: @comment
     }
   end
@@ -15,6 +16,7 @@ class CommentsController < ApplicationController
   def edit
     render locals: {
       post: resource_post,
+      parent_id: comment_params[:parent_id],
       comment: resource_comment
     }
   end
@@ -23,6 +25,7 @@ class CommentsController < ApplicationController
     comment = Comment.new(comment_params)
     comment.author = current_user
     comment.post = resource_post
+    comment.parent_id = comment_params[:parent_id]
 
     if comment.save
       flash[:success] = I18n.t('comment.create')
@@ -47,7 +50,7 @@ class CommentsController < ApplicationController
     resource_comment.destroy
 
     flash[:success] = I18n.t('comment.destroy')
-    redirect_to resource_comment.post, notice: 'Comment was successfully destroyed.'
+    redirect_to resource_comment.post
   end
 
   private
@@ -61,6 +64,6 @@ class CommentsController < ApplicationController
   end
 
   def comment_params
-    (params[:comment] || ActionController::Parameters.new).permit(:body, :post_id)
+    (params[:comment] || ActionController::Parameters.new).permit(:body, :post_id, :parent_id)
   end
 end

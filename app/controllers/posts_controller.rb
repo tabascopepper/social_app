@@ -8,7 +8,10 @@ class PostsController < ApplicationController
   end
 
   def show
-    render locals: { resource_post: resource_post }
+    render locals: {
+      post: resource_post,
+      comment: resource_comment
+    }
   end
 
   def new
@@ -52,6 +55,10 @@ class PostsController < ApplicationController
   end
 
   private
+
+  def resource_comment
+    Comment.new(post_id: resource_post.id)
+  end
 
   def resource_post
     @resource_post = Post.find(params[:id])

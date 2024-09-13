@@ -2,8 +2,9 @@
 
 class Comment < ApplicationRecord
   belongs_to :author, class_name: 'User'
-  belongs_to :parent, class_name: 'Comment', optional: true
   belongs_to :post
+  belongs_to :parent, class_name: 'Comment', optional: true
+  has_many :children, class_name: 'Comment', inverse_of: :parent, foreign_key: :parent_id, dependent: :destroy
 
   validates :body, presence: true
 end

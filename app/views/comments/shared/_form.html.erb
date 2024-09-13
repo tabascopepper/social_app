@@ -1,4 +1,6 @@
 <%= form_with(model: [post, comment], local: true) do |form| %>
+  <%= form.hidden_field :parent_id, value: parent_id %>
+
   <div class="field">
     <%= form.label :message %>
     <%= form.text_area :body %>
@@ -13,4 +15,7 @@
 
 <div style="margin-top: 50px;"></div>
 
-<%= link_to 'Back To Post', post_path(post), class: 'btn btn-secondary' %>
+
+<% if edit == true %>
+  <%= link_to 'Back To Post', post_path(post), class: 'btn btn-secondary' %>
+<% end %>
