@@ -1,3 +1,10 @@
 en:
   posts:
-    success: "Post was successfully created."
+    create: "Post was successfully created."
+    update: "Post was successfully updated."
+    destroy: "Post was successfully deleted."
+  comment:
+    create: "Comment was successfully created."
+    update: "Comment was successfully updated."
+    destroy: "Comment was successfully deleted."
+  error: "Something went wrong."
