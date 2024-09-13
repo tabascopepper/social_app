@@ -11,5 +11,6 @@ class CreateComments < ActiveRecord::Migration[7.2]
 
     add_index :comments, :author_id
     add_index :comments, :post_id
+    add_index :comments, :parent_id
   end
 end

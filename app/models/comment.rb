@@ -24,5 +24,7 @@ end
 # Indexes
 #
 #  index_comments_on_author_id  (author_id)
+#  index_comments_on_parent_id  (parent_id)
 #  index_comments_on_post_id    (post_id)
 #
+# rubocop:enable Layout/LineLength

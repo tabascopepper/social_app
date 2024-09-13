@@ -65,7 +65,7 @@ class PostsController < ApplicationController
   end
 
   def posts_collection
-    @posts_collection = Post.where(author_id: current_user.id)
+    @posts_collection = Post.own_and_subscription_posts(current_user)
   end
 
   def post_params

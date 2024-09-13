@@ -7,4 +7,7 @@ en:
     create: "Comment was successfully created."
     update: "Comment was successfully updated."
     destroy: "Comment was successfully deleted."
+  user:
+    follow: "You are now following this user."
+    unfollow: "You are unfollow from this user."
   error: "Something went wrong."

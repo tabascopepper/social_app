@@ -6,6 +6,8 @@ class Post < ApplicationRecord
 
   validates :title, presence: true
   validates :body, presence: true
+
+  scope :own_and_subscription_posts, ->(user) { where(author_id: [user.id] + user.following_ids) }
 end
 
 # == Schema Information
