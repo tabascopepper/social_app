@@ -42,6 +42,9 @@ Style/Documentation:
 RSpec/EmptyExampleGroup:
   Enabled: false
 
+RSpec/NestedGroups:
+  Max: 10
+
 Rails/UnknownEnv:
   Environments:
     - development
