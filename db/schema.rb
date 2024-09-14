@@ -26,12 +26,6 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_13_185057) do
     t.index ["post_id"], name: "index_comments_on_post_id"
   end
 
-  create_table "followers_users", id: false, force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "follower_id", null: false
-    t.index ["user_id", "follower_id"], name: "index_followers_users_on_user_id_and_follower_id", unique: true
-  end
-
   create_table "posts", force: :cascade do |t|
     t.string "title", null: false
     t.string "body", null: false
@@ -63,7 +57,4 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_13_185057) do
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
-
-  add_foreign_key "followers_users", "users"
-  add_foreign_key "followers_users", "users", column: "follower_id"
 end
