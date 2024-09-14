@@ -65,7 +65,7 @@ class PostsController < ApplicationController
   end
 
   def posts_collection
-    @posts_collection = Post.own_and_subscription_posts(current_user)
+    @posts_collection = Post.own_and_subscription_posts(current_user).order(created_at: :desc)
   end
 
   def post_params
